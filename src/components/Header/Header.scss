@@ -1,0 +1,120 @@
+@use "../../assets/styles/index" as i;
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 1px solid i.$clr-white-lt;
+  backdrop-filter: blur(75px);
+  z-index: 1337;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+
+    @include i.respond-to(large-desktop) {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @include i.respond-to(tablet) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-item {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-right: 1rem;
+        color: i.$clr-white;
+      }
+    }
+
+    @include i.respond-to(desktop) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-item {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-right: 1rem;
+        color: i.$clr-white;
+      }
+    }
+
+    @include i.respond-to(large-desktop) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-item {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-right: 1.5rem;
+        color: i.$clr-white;
+      }
+    }
+  }
+
+  &__menu {
+    &-toggle {
+
+    }
+  }
+
+  &__menu-toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: i.$clr-white-lt;
+    border-radius: 2px;
+    padding: .4rem;
+
+    @include i.respond-to(tablet) {
+      display: none;
+    }
+
+    @include i.respond-to(desktop) {
+      display: none;
+    }
+
+    @include i.respond-to(large-desktop) {
+      display: none;
+    }
+  }
+
+  &__mobile-menu {
+    display: none;
+
+    &--open {
+      display: block;
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+    }
+
+    &-item {
+      margin: .3rem 0;
+
+      &__paragraph {
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: i.$clr-white;
+      }
+    }
+
+    &__button {
+      margin-top: .3rem;
+    }
+  }
+}
