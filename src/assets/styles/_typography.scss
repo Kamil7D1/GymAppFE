@@ -1,0 +1,53 @@
+@use "./variables" as v;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  max-width: 65ch;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.header--primary {
+  font-size: clamp(2rem, 1.6rem + 2vw, 4rem);
+}
+
+.header--secondary {
+  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+}
+
+.header--tertiary {
+  font-size: clamp(1.0rem, .7rem + 1.3vw, 2.5rem);
+  font-weight: 400;
+}
+
+.paragraph,
+.paragraph--gray,
+.paragraph--black{
+  font-size: clamp(0.625rem, 0.179rem + 1.19vw, 1.25rem);
+}
+
+.paragraph {
+  color: v.$clr-white;
+}
+
+.paragraph--gray {
+  color: v.$clr-gray;
+}
+
+.paragraph--black {
+  color: v.$clr-black;
+}
