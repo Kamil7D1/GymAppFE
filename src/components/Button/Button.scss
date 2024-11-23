@@ -1,0 +1,19 @@
+@use "../../assets/styles/index" as i;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: i.$clr-blue;
+  border-radius: 4px;
+  font-weight: 500;
+  padding: .8rem 1rem;
+
+  @include i.respond-to(desktop) {
+    padding: .8rem 2.5rem;
+  }
+
+  @include i.respond-to(large-desktop) {
+    padding: .8rem 3.5rem;
+  }
+}

@@ -1,0 +1,7 @@
+@use "../../assets/styles/index" as i;
+
+.footer {
+  @include i.flex-center;
+  background: none;
+  padding: 2.5rem;
+}
