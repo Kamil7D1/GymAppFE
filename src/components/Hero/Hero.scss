@@ -1,8 +1,28 @@
+@use "../../assets/styles/index" as i;
+
 .hero {
   width: 100%;
   height: 100vh;
+  @include i.flex-center;
+
   background-image: url("/public/background-hero.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+
+    &__content {
+      max-width: 60rem;
+      text-align: center;
+      @include i.flex-center;
+      flex-direction: column;
+      row-gap: 1rem;
+
+      @include i.respond-to(desktop) {
+        row-gap: 1.5rem;
+      }
+
+      @include i.respond-to(large-desktop) {
+        row-gap: 2rem;
+      }
+    }
 }

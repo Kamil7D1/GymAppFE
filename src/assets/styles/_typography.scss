@@ -23,15 +23,18 @@ a {
 
 .header--primary {
   font-size: clamp(2rem, 1.6rem + 2vw, 4rem);
+  color: v.$clr-white;
 }
 
 .header--secondary {
   font-size: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+  color: v.$clr-blue;
 }
 
 .header--tertiary {
   font-size: clamp(1.0rem, .7rem + 1.3vw, 2.5rem);
   font-weight: 400;
+  color: v.$clr-white;
 }
 
 .paragraph,
