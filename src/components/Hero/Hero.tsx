@@ -4,7 +4,7 @@ import {Button} from "../Button/Button.tsx";
 
 export const Hero : React.FC = () => {
     return (
-        <section className="hero overlay">
+        <div className="hero overlay">
             <div className="hero__content">
                 <h1 className="header--primary">
                     Challenge your limits and
@@ -18,6 +18,6 @@ export const Hero : React.FC = () => {
                     Create Free Account
                 </Button>
             </div>
-        </section>
+        </div>
     );
 };

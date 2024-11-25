@@ -1,0 +1,12 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  > div:not(:first-child) {
+    max-width: 1400px;
+    margin-top: 1rem;
+    padding: 0 2rem;
+  }
+}

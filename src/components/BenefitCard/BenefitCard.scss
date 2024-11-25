@@ -1,0 +1,66 @@
+@use "../../assets/styles/index" as i;
+
+.benefit-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  padding: 2rem 0 2rem 0;
+
+  @include i.respond-to(desktop) {
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 2px solid i.$clr-white-lt;
+    border-radius: 10xp;
+  }
+
+  &__image {
+    max-height: 10rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    aspect-ratio: 16 / 9;
+
+    @include i.respond-to(desktop) {
+      width: 15rem;
+      margin-right: 1rem;
+    }
+
+    @include i.respond-to(large-desktop) {
+      width: 25rem;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-item {
+      display: flex;
+      align-items: start;
+      justify-content: start;
+      margin: 1rem 0 0 0;
+
+      @include i.respond-to(desktop) {
+        margin: 0 0 1rem 0;
+      }
+
+      img {
+        transform: scale(.6);
+        margin-right: .5rem;
+      }
+    }
+  }
+}

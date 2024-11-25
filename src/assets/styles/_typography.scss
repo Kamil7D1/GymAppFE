@@ -27,20 +27,21 @@ a {
 }
 
 .header--secondary {
-  font-size: clamp(1.5rem, 1.2rem + 1.5vw, 3rem);
+  font-size: clamp(0.625rem, 0.179rem + 1.19vw, 1.25rem);
   color: v.$clr-blue;
+  font-weight: 400;
 }
 
 .header--tertiary {
-  font-size: clamp(1.0rem, .7rem + 1.3vw, 2.5rem);
-  font-weight: 400;
+  font-size: clamp(1.25rem, .7rem + 1.3vw, 2.5rem);
+  font-weight: 600;
   color: v.$clr-white;
 }
 
 .paragraph,
 .paragraph--gray,
 .paragraph--black{
-  font-size: clamp(0.625rem, 0.179rem + 1.19vw, 1.25rem);
+  font-size: clamp(0.75rem, 0.405rem + 0.959vw, 1rem);
 }
 
 .paragraph {
