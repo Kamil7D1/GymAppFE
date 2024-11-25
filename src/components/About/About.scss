@@ -1,0 +1,21 @@
+@use "../../assets/styles/index" as i;
+
+.about {
+  margin-top: 2rem;
+  padding: 0 1rem;
+
+  &__content {
+    max-width: 1500px;
+    @include i.flex-center;
+    flex-direction: column;
+    text-align: center;
+    margin: 0 auto;
+
+    @include i.respond-to(tablet) {
+    }
+  }
+
+  h3 {
+    margin: 1.5rem 0;
+  }
+}
