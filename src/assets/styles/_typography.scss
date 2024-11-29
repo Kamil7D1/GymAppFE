@@ -31,10 +31,22 @@ a {
   font-weight: 400;
 }
 
+.header--secondary--white {
+  font-size: clamp(0.825rem, 0.379rem + 1.19vw, 1.45rem);
+  color: v.$clr-white;
+  font-weight: 400;
+}
+
 .header--tertiary {
   font-size: clamp(1.25rem, .7rem + 1.3vw, 2.5rem);
   font-weight: 600;
   color: v.$clr-white;
+}
+
+.header--tertiary--black {
+  font-size: clamp(1.25rem, .7rem + 1.3vw, 2.5rem);
+  font-weight: 600;
+  color: v.$clr-black;
 }
 
 .paragraph,
