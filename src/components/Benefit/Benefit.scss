@@ -1,0 +1,35 @@
+@use "../../assets/styles/index" as i;
+
+.benefits {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__header {
+    margin: 0 0 .5rem 0;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+
+    @include i.respond-to(tablet) {
+      row-gap: 2rem;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@use "../../assets/styles/index" as i;
+
+.pricing-card {
+  flex-shrink: 0;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+  border-radius: 10px;
+  padding: 2rem 2rem;
+  background-color: i.$clr-white;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__price {
+    font-weight: 700;
+
+    &-amount {
+      color: i.$clr-blue;
+      font-size: 2rem;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    &-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: .5rem;
+
+      img {
+        transform: scale(.6);
+      }
+    }
+  }
+
+  &__disclaimer {
+    max-width: 19ch;
+  }
+
+  &__button {
+    background-color: black;
+    color: i.$clr-white;
+    padding: .6rem 2rem;
+  }
+}

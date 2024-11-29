@@ -4,9 +4,10 @@
   align-items: center;
   justify-content: center;
 
-  > div:not(:first-child) {
+  > div:not(:first-child),
+  {
     max-width: 1400px;
-    margin-top: 1rem;
-    padding: 0 2rem;
+    margin-top: 8rem;
+    padding: 0 1rem;
   }
 }

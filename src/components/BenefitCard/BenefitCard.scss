@@ -4,62 +4,60 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: center;
   justify-content: center;
-  padding: 2rem 0 2rem 0;
+  background-color: i.$clr-black-h;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
 
-  @include i.respond-to(desktop) {
+  @include i.respond-to(tablet) {
+    max-height: 20rem;
     flex-direction: row;
-    align-items: start;
-    justify-content: start;
-  }
 
-  &:not(:last-child) {
-    border-bottom: 2px solid i.$clr-white-lt;
-    border-radius: 10xp;
+    &:nth-child(even){
+      flex-direction: row-reverse;
+
+      .benefit-card__image {
+        border-radius: 0 10px 10px 0;
+      }
+    }
   }
 
   &__image {
-    max-height: 10rem;
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+
+    @include i.respond-to(tablet) {
+      border-radius: 10px 0 0 10px;
+    }
+  }
+
+  &__content {
     width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
+    flex-direction: column;
+    padding:  1.4rem .7rem;
 
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    aspect-ratio: 16 / 9;
-
-    @include i.respond-to(desktop) {
-      width: 15rem;
-      margin-right: 1rem;
-    }
-
-    @include i.respond-to(large-desktop) {
-      width: 25rem;
+    @include i.respond-to(tablet) {
+      align-items: center;
     }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     &-item {
       display: flex;
-      align-items: start;
-      justify-content: start;
-      margin: 1rem 0 0 0;
+      align-items: center;
+      text-align: start;
+      margin-top: 1rem;
 
-      @include i.respond-to(desktop) {
-        margin: 0 0 1rem 0;
-      }
 
       img {
         transform: scale(.6);
-        margin-right: .5rem;
       }
     }
   }
