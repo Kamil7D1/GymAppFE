@@ -13,7 +13,6 @@ p,
 li,
 figcaption {
   text-wrap: pretty;
-  max-width: 65ch;
 }
 
 a {
@@ -27,7 +26,7 @@ a {
 }
 
 .header--secondary {
-  font-size: clamp(0.625rem, 0.179rem + 1.19vw, 1.25rem);
+  font-size: clamp(0.825rem, 0.379rem + 1.19vw, 1.45rem);
   color: v.$clr-blue;
   font-weight: 400;
 }

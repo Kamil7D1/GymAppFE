@@ -1,4 +1,4 @@
-import "./Benefits.scss";
+import "./Benefit.scss";
 import { BenefitCard } from "../BenefitCard/BenefitCard";
 import React from "react";
 
@@ -8,7 +8,7 @@ interface Benefit {
     description: string[];
 }
 
-const BENEFITS : Benefit[] = [
+const Benefits : Benefit[] = [
     {
         title: "CrossFit Group Classes",
         image: "public/image-article-croosFit.png",
@@ -47,18 +47,18 @@ const BENEFITS : Benefit[] = [
     }
 ]
 
-export const Benefits : React.FC = () => {
+export const Benefit : React.FC = () => {
     return (
         <div className="benefits">
             <div className="benefits__container">
-                <h2 className="header--secondary">
+                <h2 className="benefits__header header--secondary">
                     Benefits
                 </h2>
-                <h3 className="header--tertiary">
+                <h3 className="benefits__header header--tertiary">
                     We have options for everyone
                 </h3>
-                <ul className="benefits__grid">
-                    {BENEFITS.map((benefit: Benefit) => (
+                <ul className="benefits__list">
+                    {Benefits.map((benefit: Benefit) => (
                         <BenefitCard
                             key={benefit.title}
                             benefit={benefit}
