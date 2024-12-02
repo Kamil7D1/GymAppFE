@@ -9,6 +9,11 @@
   font-weight: 500;
   padding: .8rem 1rem;
 
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
   @include i.respond-to(desktop) {
     padding: .8rem 2.5rem;
   }
