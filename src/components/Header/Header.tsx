@@ -1,6 +1,7 @@
 import "./Header.scss";
 import React, { useState, useEffect, useRef } from 'react';
 import {Button} from "../Button/Button.tsx";
+import {Link} from "react-router-dom";
 
 interface NavItem {
     label: string;
@@ -63,12 +64,14 @@ export const Header: React.FC = () => {
                             {label}
                         </a>
                     ))}
-                    <Button
-                        className="header__mobile-menu__button"
-                        type="button"
-                    >
-                        Log In
-                    </Button>
+                    <Link to="/login">
+                        <Button
+                            className="header__mobile-menu__button"
+                            type="button"
+                        >
+                            Log In
+                        </Button>
+                    </Link>
                 </nav>
                 <div className="header__menu-toggler">
                     <button
@@ -112,12 +115,14 @@ export const Header: React.FC = () => {
                             </p>
                         </a>
                     ))}
-                    <Button
-                        className="header__mobile-menu__button"
-                        type="button"
-                    >
-                        Log In
-                    </Button>
+                    <Link to="/login">
+                        <Button
+                            className="header__mobile-menu__button"
+                            type="button"
+                        >
+                            Log In
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </header>

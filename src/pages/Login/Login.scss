@@ -1,0 +1,13 @@
+@use "../../assets/styles/index" as i;
+
+.login-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url("/public/muscular-build-man-preparing-lifting-barbell.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
