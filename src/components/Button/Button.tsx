@@ -5,7 +5,7 @@ interface ButtonProps {
     children: string | ReactNode;
     className?: string;
     onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
-    type: "button";
+    type: "button" | "submit";
 }
 
 export const Button : React.FC<ButtonProps> = ({ children, className, onClick, type }) => {
