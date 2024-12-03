@@ -4,7 +4,7 @@ import React from "react";
 interface InputProps {
     id: string;
     name: string;
-    type: string;
+    type?: string;
     placeholder: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur?: React.FocusEventHandler<HTMLInputElement>;
@@ -12,16 +12,16 @@ interface InputProps {
     className?: string;
 }
 
-export const Input : React.FC<InputProps> = ({
-    id,
-    name,
-    type,
-    placeholder,
-    onChange,
-    onBlur,
-    value,
-    className,
-                                 }) => {
+export const Input: React.FC<InputProps> = ({
+                                                id,
+                                                name,
+                                                type = 'text',
+                                                placeholder,
+                                                onChange,
+                                                onBlur,
+                                                value,
+                                                className,
+                                            }) => {
     return (
         <input
             id={id}
@@ -31,7 +31,7 @@ export const Input : React.FC<InputProps> = ({
             onChange={onChange}
             onBlur={onBlur}
             value={value}
-            className={`input ${className}`}
+            className={`input ${className || ''}`}
         />
     );
 };
