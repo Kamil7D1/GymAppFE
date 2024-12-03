@@ -1,11 +1,22 @@
-import "./Login.scss";
-import React from "react";
 import {AuthForm} from "../../components/AuthForm/AuthForm.tsx";
+import React from "react";
+import "./Login.scss";
 
-export const Login : React.FC = () => {
+interface AuthFormValues {
+    email: string;
+    password: string;
+    firstName?: string;
+    lastName?: string;
+}
+
+export const Login: React.FC = () => {
+    const handleSubmit = (values: AuthFormValues) => {
+        console.log(values);
+    };
+
     return (
         <div className="login-page">
-            <AuthForm/>
+            <AuthForm type="login" onSubmit={handleSubmit} />
         </div>
     );
 };
