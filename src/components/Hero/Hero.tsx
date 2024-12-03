@@ -1,6 +1,7 @@
 import "./Hero.scss";
 import React from "react";
 import {Button} from "../Button/Button.tsx";
+import {Link} from "react-router-dom";
 
 export const Hero : React.FC = () => {
     return (
@@ -14,9 +15,11 @@ export const Hero : React.FC = () => {
                     Push beyond your comfort zone and unlock your true potential, commit to the process and celebrate
                     every small victory along the way.
                 </p>
-                <Button type="button">
-                    Create Free Account
-                </Button>
+                <Link to="/register">
+                    <Button type="button">
+                        Create Free Account
+                    </Button>
+                </Link>
             </div>
         </div>
     );
