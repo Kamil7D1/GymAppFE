@@ -1,6 +1,9 @@
+import "./Login.scss";
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import {AuthForm} from "../../components/AuthForm/AuthForm.tsx";
 import React from "react";
-import "./Login.scss";
 
 interface AuthFormValues {
     email: string;
@@ -9,14 +12,36 @@ interface AuthFormValues {
     lastName?: string;
 }
 
+interface LoginResponse {
+    token: string;
+}
+
 export const Login: React.FC = () => {
-    const handleSubmit = (values: AuthFormValues) => {
-        console.log(values);
-    };
+    const navigate = useNavigate();
+
+    const loginMutation = useMutation({
+        mutationFn: (values: AuthFormValues) =>
+            axios.post<LoginResponse>('http://localhost:3000/api/auth/login', values),
+        onSuccess: (response) => {
+            localStorage.setItem('token', response.data.token);
+
+            axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+
+            navigate('/');
+        },
+        onError: (error) => {
+            if (axios.isAxiosError(error)) {
+                console.error('Login failed:', error.response?.data.error);
+            }
+        }
+    });
 
     return (
         <div className="login-page">
-            <AuthForm type="login" onSubmit={handleSubmit} />
+            <AuthForm
+                type="login"
+                onSubmit={(values) => loginMutation.mutate(values)}
+            />
         </div>
     );
 };
