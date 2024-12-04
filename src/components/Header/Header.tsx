@@ -1,7 +1,7 @@
 import "./Header.scss";
 import React, { useState, useEffect, useRef } from 'react';
 import {Button} from "../Button/Button.tsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 interface NavItem {
     label: string;
@@ -11,6 +11,20 @@ interface NavItem {
 export const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
+    const navigate = useNavigate();
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        setIsLoggedIn(!!token);
+    }, []);
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLoggedIn(false);
+        navigate('/');
+    };
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -64,14 +78,24 @@ export const Header: React.FC = () => {
                             {label}
                         </a>
                     ))}
-                    <Link to="/login">
+                    {isLoggedIn ? (
                         <Button
                             className="header__mobile-menu__button"
                             type="button"
+                            onClick={handleLogout}
                         >
-                            Log In
+                            Log Out
                         </Button>
-                    </Link>
+                    ) : (
+                        <Link to="/login">
+                            <Button
+                                className="header__mobile-menu__button"
+                                type="button"
+                            >
+                                Log In
+                            </Button>
+                        </Link>
+                    )}
                 </nav>
                 <div className="header__menu-toggler">
                     <button
@@ -115,14 +139,24 @@ export const Header: React.FC = () => {
                             </p>
                         </a>
                     ))}
-                    <Link to="/login">
+                    {isLoggedIn ? (
                         <Button
                             className="header__mobile-menu__button"
                             type="button"
+                            onClick={handleLogout}
                         >
-                            Log In
+                            Log Out
                         </Button>
-                    </Link>
+                    ) : (
+                        <Link to="/login">
+                            <Button
+                                className="header__mobile-menu__button"
+                                type="button"
+                            >
+                                Log In
+                            </Button>
+                        </Link>
+                    )}
                 </div>
             </div>
         </header>

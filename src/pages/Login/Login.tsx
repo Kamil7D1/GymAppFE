@@ -27,7 +27,7 @@ export const Login: React.FC = () => {
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
 
-            navigate('/');
+            navigate('/dashboard');
         },
         onError: (error) => {
             if (axios.isAxiosError(error)) {
