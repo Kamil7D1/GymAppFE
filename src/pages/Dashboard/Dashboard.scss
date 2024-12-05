@@ -2,7 +2,7 @@
 
 .dashboard-page {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: start;
   justify-content: center;
@@ -21,7 +21,7 @@
     background-color: i.$clr-black-h;
 
     @include i.respond-to(tablet) {
-      flex-direction: row;
+      flex-direction: column;
       max-width: 70rem;
     }
   }
