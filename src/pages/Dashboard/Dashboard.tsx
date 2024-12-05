@@ -1,6 +1,7 @@
 import "./Dashboard.scss";
 import React from "react";
 import {MainLayout} from "../../MainLayout/MainLayout.tsx";
+import {Calendar} from "../../components/Calendar/Calendar.tsx";
 
 export const Dashboard: React.FC = () => {
     return (
@@ -49,6 +50,7 @@ export const Dashboard: React.FC = () => {
                         </div>
                     </div>
                 </div>
+                <Calendar/>
             </div>
         </MainLayout>
     );

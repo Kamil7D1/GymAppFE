@@ -1,0 +1,110 @@
+.calendar-container {
+  padding: 20px;
+  background: #111;
+  color: white;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .fc {
+    background: #111;
+
+    &-header-toolbar {
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 10px;
+
+        .fc-toolbar-chunk {
+          display: flex;
+          justify-content: center;
+        }
+      }
+
+      .fc-button {
+        background: #333;
+        border-color: #444;
+
+        @media (max-width: 576px) {
+          padding: 6px 10px;
+          font-size: 14px;
+        }
+
+        &:hover {
+          background: #444;
+        }
+      }
+    }
+
+    &-view {
+      @media (max-width: 768px) {
+        min-height: 500px;
+      }
+    }
+
+    &-timegrid-event {
+      @media (max-width: 576px) {
+        font-size: 12px;
+        padding: 2px 4px;
+      }
+    }
+
+    &-day-header {
+      background: #222;
+      padding: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      @media (max-width: 576px) {
+        padding: 5px;
+        font-size: 12px;
+      }
+    }
+
+    &-timegrid-slot {
+      height: 50px !important;
+      border-color: #333;
+      color: #999;
+
+      @media (max-width: 768px) {
+        height: 40px !important;
+      }
+    }
+
+    &-timegrid-slot-lane {
+      border-color: #333;
+    }
+
+    &-col-header-cell {
+      background: #222;
+      border-color: #333;
+    }
+
+    &-event {
+      border: none;
+      padding: 4px 8px;
+
+      &-title {
+        font-size: 14px;
+
+        @media (max-width: 576px) {
+          font-size: 12px;
+        }
+      }
+
+      &.session-available {
+        background: #1a472a;
+        color: white;
+
+        &:hover {
+          background: #2a573a;
+        }
+      }
+
+      &.session-full {
+        background: #5c0a0a;
+        color: #ddd;
+      }
+    }
+  }
+}
