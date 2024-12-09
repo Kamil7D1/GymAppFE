@@ -105,6 +105,11 @@
         background: #5c0a0a;
         color: #ddd;
       }
+
+      &.session-registered {
+        font-weight: bold !important;
+        border-left: 4px solid #45a049 !important;
+      }
     }
   }
 }

@@ -1,0 +1,96 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: #222;
+  padding: 24px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  color: white;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 8px;
+      background: #333;
+      border: 1px solid #444;
+      border-radius: 4px;
+      color: white;
+
+      &.error-input {
+        border-color: #ff4444;
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #4CAF50;
+      }
+    }
+
+    .error {
+      color: #ff4444;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+  }
+
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+
+    button {
+      padding: 8px 16px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &[type="submit"] {
+        background: #4CAF50;
+        color: white;
+
+        &:hover {
+          background: #45a049;
+        }
+
+        &:disabled {
+          background: #2d662f;
+          cursor: not-allowed;
+        }
+      }
+
+      &[type="button"] {
+        background: #666;
+        color: white;
+
+        &:hover {
+          background: #777;
+        }
+      }
+    }
+  }
+}
