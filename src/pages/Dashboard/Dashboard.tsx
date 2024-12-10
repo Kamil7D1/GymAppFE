@@ -3,6 +3,8 @@ import React from "react";
 import {MainLayout} from "../../MainLayout/MainLayout.tsx";
 import {Calendar} from "../../components/Calendar/Calendar.tsx";
 import {TrainersList} from "../../components/TrainersList/TrainersList.tsx";
+import {MembershipPurchase} from "../../components/MembershipPurchase/MembershipPurchase.tsx";
+import {Link} from "react-router-dom";
 
 export const Dashboard: React.FC = () => {
     return (
@@ -24,6 +26,21 @@ export const Dashboard: React.FC = () => {
                         <div className="dashboard-page__stats-item">180 cm</div>
                     </div>
 
+                    <div className="dashboard-actions">
+                        <Link to="/workout-plans" className="dashboard-action-button">
+                            My Workout Plans
+                        </Link>
+                        {userRole === 'TRAINER' && (
+                            <Link to="/trainer/workout-plans" className="dashboard-action-button">
+                                Client Workout Plans
+                            </Link>
+                        )}
+                    </div>
+
+                    <div className="dashboard-page__membership-section">
+                        <MembershipPurchase/>
+                    </div>
+
                     <div className="dashboard-page__membership">
                         <h3 className="dashboard-page__membership-title header--tertiary">Your Membership</h3>
                         <div className="dashboard-page__membership-duration">
@@ -36,7 +53,7 @@ export const Dashboard: React.FC = () => {
                         </div>
                         <div className="dashboard-page__membership-status">
                             <p className="paragraph--black">
-                            Active - Valid until:
+                                Active - Valid until:
                                 <span>
                                     {" "}31.12.2024
                                 </span>

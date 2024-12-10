@@ -8,6 +8,15 @@
   justify-content: center;
   margin-top: 7rem;
 
+  &__membership-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
   &__container {
     flex-basis: 100%;
     max-width: 21rem;

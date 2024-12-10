@@ -8,6 +8,8 @@ import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {Dashboard} from "./pages/Dashboard/Dashboard.tsx";
 import {TrainerDashboard} from "./pages/TrainerDashboard/TrainerDashboard.tsx";
 import {jwtDecode} from "jwt-decode";
+import {WorkoutPlanList} from "./components/WorkoutPlanList/WorkoutPlanList.tsx";
+import {TrainerWorkoutPlans} from "./components/TrainerWorkoutPlans/TrainerWorkoutPlans.tsx";
 
 interface ProtectedRouteProps {
     role: string;
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
     {
         path: "/trainer-dashboard",
         element: <ProtectedRoute role="TRAINER"><TrainerDashboard /></ProtectedRoute>
+    },
+    {
+        path: "/workout-plans",
+        element: <WorkoutPlanList />
+    },
+    {
+        path: "/trainer/workout-plans",
+        element: <ProtectedRoute role="TRAINER"><TrainerWorkoutPlans /></ProtectedRoute>
     }
 ]);
 

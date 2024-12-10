@@ -1,0 +1,88 @@
+.workout-templates {
+  padding: 2rem;
+
+  .templates-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      color: #333;
+    }
+
+    .create-template-button {
+      background: #2196F3;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background: #1976D2;
+      }
+    }
+  }
+
+  .templates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .template-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h3 {
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    .template-description {
+      color: #666;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .exercises-count {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .template-actions {
+      display: flex;
+      gap: 1rem;
+
+      button {
+        flex: 1;
+        padding: 0.5rem;
+        border-radius: 4px;
+        cursor: pointer;
+        border: none;
+
+        &.edit-button {
+          background: #f8f9fa;
+          border: 1px solid #ddd;
+
+          &:hover {
+            background: #e9ecef;
+          }
+        }
+
+        &.use-button {
+          background: #4CAF50;
+          color: white;
+
+          &:hover {
+            background: #388E3C;
+          }
+        }
+      }
+    }
+  }
+}

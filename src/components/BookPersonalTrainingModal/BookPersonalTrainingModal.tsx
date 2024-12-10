@@ -30,7 +30,7 @@ export const BookPersonalTrainingModal: React.FC<BookPersonalTrainingModalProps>
     const bookTraining = useMutation({
         mutationFn: async () => {
             const response = await axios.post(
-                '/api/personal-trainings/book',
+                '/api/personal-training/book',
                 {
                     trainerId: trainer.id,
                     date: selectedDate,
@@ -98,10 +98,13 @@ export const BookPersonalTrainingModal: React.FC<BookPersonalTrainingModalProps>
                             id="time"
                             value={selectedTime}
                             onChange={(e) => setSelectedTime(e.target.value)}
-                            min="06:00"
-                            max="22:00"
+                            min="08:00"
+                            max="21:00"
                             required
                         />
+                        <small className="time-info">
+                            Training sessions are available between 8:00 and 22:00
+                        </small>
                     </div>
 
                     <div className="form-group">

@@ -23,7 +23,7 @@ export const TrainersList: React.FC = () => {
     const { data: trainers, isLoading, error } = useQuery<Trainer[]>({
         queryKey: ['trainers'],
         queryFn: async () => {
-            const response = await axios.get('/api/trainer/list', { // zmiana ścieżki z '/api/trainers' na '/api/trainer/list'
+            const response = await axios.get('/api/trainer/list', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
