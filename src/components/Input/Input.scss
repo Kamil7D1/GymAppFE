@@ -1,16 +1,26 @@
-@use "../../assets/styles/index.scss" as i;
+@use '../../assets/styles/index' as *;
 
 .input {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding: 1rem;
-  border-radius: 10px;
-  background-color: rgb(30, 30, 30);
-  color: i.$clr-white;
+  padding: 0.875rem 1rem;
+  background: rgba($clr-white, 0.05);
+  border: 1px solid rgba($clr-white, 0.1);
+  border-radius: 8px;
+  color: $clr-white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 
   &::placeholder {
-    color: i.$clr-white;
+    color: rgba($clr-white, 0.5);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $clr-blue;
+    background: rgba($clr-white, 0.08);
+  }
+
+  &.error {
+    border-color: $clr-red;
   }
 }

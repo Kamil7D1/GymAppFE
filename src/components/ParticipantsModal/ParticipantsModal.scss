@@ -1,123 +1,150 @@
 // ParticipantsModal.scss
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+@use '../../assets/styles/index' as *;
 
+// Bazujemy na wspólnych stylach modalnych, dodając specyficzne style dla listy uczestników
 .modal-content {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 8px;
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+  width: 100%;
+  max-width: 700px; // Szerszy modal dla tabeli
 
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
 
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-  }
-
-  .close-button {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.5rem;
-    line-height: 1;
-    color: #666;
-
-    &:hover {
-      color: #333;
-    }
-  }
-}
-
-.session-info {
-  color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 1.5rem;
-
-  p {
-    margin: 0.25rem 0;
-  }
-}
-
-.participants-list {
-  table {
-    width: 100%;
-    border-collapse: collapse;
-
-    th, td {
-      padding: 0.75rem;
-      text-align: left;
-      border-bottom: 1px solid #eee;
+    h2 {
+      color: $clr-white;
+      margin: 0;
     }
 
-    th {
-      font-weight: 600;
-      color: #666;
-      background-color: #f5f5f5;
-    }
+    .close-button {
+      background: none;
+      border: none;
+      color: $clr-white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
 
-    tr:hover {
-      background-color: #f9f9f9;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 
-  .remove-button {
-    background-color: #ff4444;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
+  .session-info {
+    background: rgba($clr-white, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
 
-    &:hover {
-      background-color: #cc0000;
+    p {
+      color: $clr-gray;
+      margin-bottom: 0.5rem;
+      font-size: 0.9375rem;
+
+      &:first-child {
+        color: $clr-white;
+        font-weight: 500;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
-}
 
-.loading {
-  text-align: center;
-  padding: 2rem;
-  color: #666;
-}
+  .loading {
+    text-align: center;
+    color: $clr-gray;
+    padding: 2rem;
+  }
 
-.error {
-  color: #e53935;
-  padding: 1rem;
-  text-align: center;
-  background-color: #ffebee;
-  border-radius: 4px;
-  margin: 1rem 0;
-}
+  .error {
+    background: rgba($clr-red, 0.1);
+    color: $clr-red;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
 
-.no-participants {
-  text-align: center;
-  color: #666;
-  padding: 2rem;
-  background-color: #f5f5f5;
-  border-radius: 4px;
+  .participants-list {
+    .no-participants {
+      text-align: center;
+      color: $clr-gray;
+      padding: 2rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+
+      th {
+        text-align: left;
+        padding: 1rem;
+        color: $clr-gray;
+        font-weight: 500;
+        border-bottom: 1px solid rgba($clr-white, 0.1);
+      }
+
+      td {
+        padding: 1rem;
+        color: $clr-white;
+        border-bottom: 1px solid rgba($clr-white, 0.05);
+
+        &:last-child {
+          text-align: right;
+        }
+      }
+
+      tr {
+        &:last-child td {
+          border-bottom: none;
+        }
+
+        &:hover td {
+          background: rgba($clr-white, 0.02);
+        }
+      }
+
+      .remove-button {
+        background: rgba($clr-red, 0.1);
+        color: $clr-red;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: rgba($clr-red, 0.2);
+          transform: translateY(-1px);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  @include respond-to(mobile) {
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+
+      th, td {
+        white-space: nowrap;
+        padding: 0.75rem !important;
+      }
+    }
+
+    .session-info {
+      p {
+        font-size: 0.875rem;
+      }
+    }
+  }
 }

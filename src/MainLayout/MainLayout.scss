@@ -1,0 +1,23 @@
+@use '../assets/styles/index' as *;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $clr-black;
+
+  &__main {
+    flex: 1;
+    margin-top: 80px; // Height of the header
+    padding: 2rem;
+    max-width: 1440px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include respond-to(mobile) {
+      padding: 1rem;
+      margin-top: 70px;
+    }
+  }
+}

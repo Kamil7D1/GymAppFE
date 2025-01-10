@@ -1,9 +1,13 @@
-@use "../../assets/styles/index" as i;
+@use '../../assets/styles/index' as *;
 
 .footer {
-  @include i.flex-center;
-  background: none;
-  padding: 2.5rem;
-  border-top: 1px solid i.$clr-gray;
-  margin-top: 8rem;
+  background: $clr-black-h;
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba($clr-white, 0.1);
+
+  .paragraph {
+    opacity: 0.7;
+    font-size: 0.875rem;
+  }
 }

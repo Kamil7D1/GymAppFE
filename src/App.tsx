@@ -1,11 +1,11 @@
 import './App.scss';
 import * as React from "react";
-import {MainLayout} from "./MainLayout/MainLayout.tsx";
-import {Home} from "./pages/Home/Home.tsx";
+import { MainLayout } from "./MainLayout/MainLayout.tsx";
+import { Home } from "./pages/Home/Home.tsx";
 import axios from "axios";
+import { SocketProvider } from './context/SocketContext.tsx';
 
-export const App : React.FC = () => {
-
+export const App: React.FC = () => {
     axios.interceptors.request.use((config) => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -14,9 +14,11 @@ export const App : React.FC = () => {
         return config;
     });
 
-  return (
-    <MainLayout>
-      <Home/>
-    </MainLayout>
-  );
+    return (
+        <SocketProvider>
+            <MainLayout>
+                <Home/>
+            </MainLayout>
+        </SocketProvider>
+    );
 };

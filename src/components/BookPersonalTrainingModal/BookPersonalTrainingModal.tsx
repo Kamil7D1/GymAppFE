@@ -1,8 +1,12 @@
 // components/BookPersonalTrainingModal/BookPersonalTrainingModal.tsx
 import React, { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import './BookPersonalTrainingModal.scss';
+
+interface ApiError {
+    error: string;
+}
 
 interface Trainer {
     id: number;
@@ -35,7 +39,8 @@ export const BookPersonalTrainingModal: React.FC<BookPersonalTrainingModalProps>
                     trainerId: trainer.id,
                     date: selectedDate,
                     time: selectedTime,
-                    message
+                    message,
+                    duration: 60 // Standardowa długość sesji w minutach
                 },
                 {
                     headers: {
@@ -43,6 +48,8 @@ export const BookPersonalTrainingModal: React.FC<BookPersonalTrainingModalProps>
                     }
                 }
             );
+            // Dodajemy invalidację dla trainingSessions
+            queryClient.invalidateQueries({ queryKey: ['trainingSessions'] });
             return response.data;
         },
         onSuccess: () => {
@@ -50,7 +57,7 @@ export const BookPersonalTrainingModal: React.FC<BookPersonalTrainingModalProps>
             onClose();
             alert('Training session booked successfully!');
         },
-        onError: (error: any) => {
+        onError: (error: AxiosError<ApiError>) => {
             alert(error.response?.data?.error || 'Failed to book training');
         }
     });

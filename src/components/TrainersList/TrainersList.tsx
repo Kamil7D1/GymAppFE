@@ -1,4 +1,3 @@
-// components/TrainersList/TrainersList.tsx
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -11,7 +10,6 @@ interface Trainer {
     lastName: string;
     specialization: string;
     description: string;
-    photoUrl: string;
     rating: number;
     pricePerSession: number;
 }
@@ -42,15 +40,17 @@ export const TrainersList: React.FC = () => {
 
     return (
         <div className="trainers-list">
-            <h2 className="trainers-list__title header--secondary">Personal Trainers</h2>
+            <h2 className="trainers-list__title">Personal Trainers</h2>
             <div className="trainers-list__container">
-                {trainers?.map(trainer => (
+                {trainers?.map((trainer, i: number) => (
                     <div key={trainer.id} className="trainer-card">
-                        <img
-                            src={trainer.photoUrl || '/placeholder-trainer.jpg'}
-                            alt={`${trainer.firstName} ${trainer.lastName}`}
-                            className="trainer-card__photo"
-                        />
+                        <div className="trainer-card__photo-container">
+                            <img
+                                src={`/coach${i+1}.png`}
+                                alt={`${trainer.firstName} ${trainer.lastName}`}
+                                className="trainer-card__photo"
+                            />
+                        </div>
                         <div className="trainer-card__content">
                             <h3 className="trainer-card__name">
                                 {trainer.firstName} {trainer.lastName}
@@ -62,9 +62,6 @@ export const TrainersList: React.FC = () => {
                                 {trainer.description}
                             </p>
                             <div className="trainer-card__footer">
-                                <span className="trainer-card__price">
-                                    ${trainer.pricePerSession}/session
-                                </span>
                                 <button
                                     className="trainer-card__book-btn"
                                     onClick={() => handleBookTraining(trainer)}

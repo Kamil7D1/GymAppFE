@@ -1,120 +1,196 @@
-@use "../../assets/styles/index" as i;
-
 .header {
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  border-bottom: 1px solid i.$clr-white-lt;
-  backdrop-filter: blur(75px);
-  z-index: 1337;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__logo {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 1rem;
 
-    @include i.respond-to(large-desktop) {
-      padding: 1rem 1.5rem;
+    &-img {
+      height: 40px;
+      width: auto;
     }
   }
 
   &__nav {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 
-    @include i.respond-to(tablet) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media (max-width: 768px) {
+      display: none;
+    }
 
-      &-item {
-        font-size: 1rem;
-        font-weight: 500;
-        margin-right: 1rem;
-        color: i.$clr-white;
+    &-item {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #2196F3;
       }
     }
 
-    @include i.respond-to(desktop) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    &-notifications {
+      margin-left: 1rem;
 
-      &-item {
-        font-size: 1rem;
-        font-weight: 500;
-        margin-right: 1rem;
-        color: i.$clr-white;
+      @media (max-width: 768px) {
+        display: none;
       }
-    }
-
-    @include i.respond-to(large-desktop) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &-item {
-        font-size: 1.2rem;
-        font-weight: 500;
-        margin-right: 1.5rem;
-        color: i.$clr-white;
-      }
-    }
-  }
-
-  &__menu {
-    &-toggle {
-
     }
   }
 
   &__menu-toggler {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: i.$clr-white-lt;
-    border-radius: 2px;
-    padding: .4rem;
+    display: none;
 
-    @include i.respond-to(tablet) {
-      display: none;
-    }
-
-    @include i.respond-to(desktop) {
-      display: none;
-    }
-
-    @include i.respond-to(large-desktop) {
-      display: none;
+    @media (max-width: 768px) {
+      display: block;
     }
   }
 
+  &__menu-toggle-button {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__menu-toggle-icon {
+    width: 24px;
+    height: 24px;
+  }
+
   &__mobile-menu {
-    display: none;
+    position: fixed;
+    top: 73px; // Wysokość headera
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 99;
 
     &--open {
-      display: block;
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
     }
 
     &-container {
       display: flex;
       flex-direction: column;
-      padding: 1rem;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     &-item {
-      margin: .3rem 0;
+      text-decoration: none;
+      width: 100%;
+      text-align: center;
 
       &__paragraph {
-        font-size: 1.2rem;
+        color: #ffffff;
+        font-size: 1.1rem;
         font-weight: 500;
-        color: i.$clr-white;
+        margin: 0;
+        padding: 0.75rem;
+        transition: background-color 0.2s ease;
+        border-radius: 8px;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
       }
     }
 
-    &__button {
-      margin-top: .3rem;
+    &-notifications {
+      width: 100%;
+      max-width: 300px;
+      margin: 1rem 0;
     }
+
+    &__button {
+      width: 100%;
+      max-width: 300px;
+      margin-top: 1rem;
+    }
+  }
+}
+
+// Style dla Button w kontekście headera
+.header {
+  .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    background: #2196F3;
+    color: #ffffff;
+
+    &:hover {
+      background: #1976D2;
+      transform: translateY(-1px);
+    }
+  }
+}
+
+// Dodatkowe style dla NotificationsPanel w kontekście headera
+.notifications-panel {
+  position: relative;
+
+  .notifications-icon {
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .notifications-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #F44336;
+    color: #ffffff;
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
   }
 }

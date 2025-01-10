@@ -1,0 +1,32 @@
+@use '../../assets/styles/index' as *;
+
+.notifications-panel {
+  .notifications-trigger {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+
+    .notifications-icon {
+      color: $clr-white;
+    }
+
+    .notifications-badge {
+      background: $clr-blue;
+      color: $clr-white;
+    }
+  }
+
+  .notifications-content {
+    h4 {
+      color: $clr-white;
+    }
+
+    p {
+      color: rgba($clr-white, 0.8);
+    }
+
+    .notification-time {
+      color: rgba($clr-white, 0.6);
+    }
+  }
+}

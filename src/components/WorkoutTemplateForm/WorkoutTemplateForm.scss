@@ -1,0 +1,290 @@
+.template-form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  z-index: 1000;
+  overflow-y: auto;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+.template-form {
+  background: linear-gradient(180deg, #1E1E1E 0%, #141414 100%);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 800px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+  0 32px 64px -12px rgba(0, 0, 0, 0.6);
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
+
+  h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-group {
+    margin-bottom: 2.5rem;
+
+    label {
+      display: block;
+      color: #B0B0B0;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 1.25rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      color: #ffffff;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: #2196F3;
+        background: rgba(33, 150, 243, 0.1);
+        box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+  }
+
+  .exercises-form {
+    margin-top: 3.5rem;
+
+    h4 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 4px;
+        height: 24px;
+        background: #2196F3;
+        border-radius: 2px;
+      }
+    }
+
+    h5 {
+      color: #ffffff;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .exercise-form-group {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .exercise-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+      .remove-exercise {
+        padding: 0.75rem 1.5rem;
+        border-radius: 12px;
+        background: rgba(244, 67, 54, 0.1);
+        color: #FF5252;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(244, 67, 54, 0.2);
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    .exercise-inputs {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1.5rem;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .input-group {
+        label {
+          display: block;
+          color: #B0B0B0;
+          margin-bottom: 0.75rem;
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+
+        input, textarea, select {
+          width: 100%;
+          padding: 1rem 1.25rem;
+          background: rgba(0, 0, 0, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: 12px;
+          color: #ffffff;
+          font-size: 0.95rem;
+
+          &:focus {
+            border-color: #2196F3;
+            background: rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.15);
+          }
+        }
+
+        textarea {
+          min-height: 80px;
+          resize: vertical;
+        }
+
+        select {
+          appearance: none;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23ffffff' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+          background-repeat: no-repeat;
+          background-position: right 1.25rem center;
+          padding-right: 3rem;
+        }
+
+        &.full-width {
+          grid-column: 1 / -1;
+        }
+      }
+    }
+  }
+
+  .add-exercise-button {
+    width: 100%;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background: rgba(33, 150, 243, 0.1);
+    border: 2px dashed rgba(33, 150, 243, 0.3);
+    border-radius: 16px;
+    color: #2196F3;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(33, 150, 243, 0.15);
+      border-style: solid;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(33, 150, 243, 0.15);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid rgba(255, 255, 255, 0.08);
+
+    button {
+      min-width: 140px;
+      padding: 1rem 2rem;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      cursor: pointer;
+
+      &[type="button"] {
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.15);
+          border-color: rgba(255, 255, 255, 0.2);
+          transform: translateY(-2px);
+        }
+      }
+
+      &[type="submit"] {
+        background: #2196F3;
+        color: #ffffff;
+
+        &:hover:not(:disabled) {
+          background: #1976D2;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(33, 150, 243, 0.25);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: #1976D2;
+        }
+      }
+
+      &:active:not(:disabled) {
+        transform: translateY(0);
+      }
+    }
+  }
+}

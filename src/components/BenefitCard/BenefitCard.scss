@@ -1,64 +1,48 @@
-@use "../../assets/styles/index" as i;
+@use '../../assets/styles/index' as *;
 
 .benefit-card {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: i.$clr-black-h;
-  border-radius: 10px;
-  text-align: center;
+  background: rgba($clr-white, 0.02);
+  border-radius: 16px;
   overflow: hidden;
+  transition: transform 0.3s ease;
 
-  @include i.respond-to(tablet) {
-    max-height: 20rem;
-    flex-direction: row;
-
-    &:nth-child(even){
-      flex-direction: row-reverse;
-
-      .benefit-card__image {
-        border-radius: 0 10px 10px 0;
-      }
-    }
+  &:hover {
+    transform: translateY(-8px);
   }
 
   &__image {
     width: 100%;
-    height: auto;
-    border-radius: 10px 10px 0 0;
-
-    @include i.respond-to(tablet) {
-      border-radius: 10px 0 0 10px;
-    }
+    height: 200px;
+    object-fit: cover;
   }
 
   &__content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    padding:  1.4rem .7rem;
+    padding: 2rem;
+  }
 
-    @include i.respond-to(tablet) {
-      align-items: center;
-    }
+  &__header {
+    margin-bottom: 1.5rem;
   }
 
   &__list {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+  }
 
-    &-item {
-      display: flex;
-      align-items: center;
-      text-align: start;
-      margin-top: 1rem;
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 
+    img {
+      width: 20px;
+      height: 20px;
+      filter: invert(46%) sepia(99%) saturate(1639%) hue-rotate(205deg) brightness(97%) contrast(101%);
+    }
 
-      img {
-        transform: scale(.6);
-      }
+    p {
+      flex: 1;
     }
   }
 }

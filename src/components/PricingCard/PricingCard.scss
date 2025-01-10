@@ -1,55 +1,83 @@
-@use "../../assets/styles/index" as i;
+// PricingCard.scss
+@use '../../assets/styles/index' as *;
 
 .pricing-card {
-  flex-shrink: 0;
-  max-width: 20rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  row-gap: 2rem;
-  border-radius: 10px;
-  padding: 2rem 2rem;
-  background-color: i.$clr-white;
+  background: $clr-black;
+  border-radius: 16px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+  }
 
   &__title {
-    font-size: 2rem;
-    font-weight: 700;
+    color: $clr-white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
   }
 
   &__price {
-    font-weight: 700;
+    margin-bottom: 2rem;
 
     &-amount {
-      color: i.$clr-blue;
-      font-size: 2rem;
+      color: $clr-blue;
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    &-period {
+      color: $clr-gray;
+      font-size: 1.125rem;
     }
   }
 
   &__list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 1rem;
-    &-item {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: .5rem;
+    margin-bottom: 2rem;
+  }
 
-      img {
-        transform: scale(.6);
-      }
+  &__list-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba($clr-white, 0.1);
+
+    &:last-child {
+      border-bottom: none;
     }
   }
 
+  &__list-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(46%) sepia(99%) saturate(1639%) hue-rotate(205deg) brightness(97%) contrast(101%);
+  }
+
+  &__list-text {
+    color: $clr-white;
+    font-size: 0.9375rem;
+  }
+
   &__disclaimer {
-    max-width: 19ch;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
   }
 
   &__button {
-    background-color: black;
-    color: i.$clr-white;
-    padding: .6rem 2rem;
+    width: 100%;
+    background: $clr-blue;
+    color: $clr-white;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    //&:hover {
+    //  background: darken($clr-blue, 10%);
+    //  transform: translateY(-1px);
+    //}
   }
 }

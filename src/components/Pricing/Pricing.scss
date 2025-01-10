@@ -1,26 +1,28 @@
-@use "../../assets/styles/index" as i;
+@use '../../assets/styles/index' as *;
 
 .pricing {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: i.$clr-blue;
-  border-radius: 10px;
-  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, rgba($clr-blue, 0.1), rgba($clr-blue, 0.02));
 
-  &__title,
-  &__subtitle{
-    margin: 0 0 1rem 0;
+  @include respond-to(mobile) {
+    padding: 3rem 1rem;
   }
 
+  &__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+  }
 
   &__content {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
   }
 }

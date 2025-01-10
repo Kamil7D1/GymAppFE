@@ -1,98 +1,174 @@
-@use "../../assets/styles/index" as i;
-
 .dashboard-page {
-  width: 100%;
   min-height: 100vh;
-  display: flex;
-  align-items: start;
-  justify-content: center;
-  margin-top: 7rem;
-
-  &__membership-section {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+  background: #121212;
 
   &__container {
-    flex-basis: 100%;
-    max-width: 21rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background-color: i.$clr-black-h;
-
-    @include i.respond-to(tablet) {
-      flex-direction: column;
-      max-width: 70rem;
-    }
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
   }
 
   &__welcome {
-    flex: 1;
-    width: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    background-color: i.$clr-black;
-    border-radius: 10px;
-    row-gap: .5rem;
-    padding: 2rem 1rem;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
   &__avatar {
-    align-self: center;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
+    object-fit: cover;
   }
 
   &__info {
-    display: flex;
-    flex-direction: column;
-    row-gap: .4rem;
+    flex: 1;
   }
 
-  &__stats {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 2rem 0;
-    background-color: i.$clr-black;
-    border-radius: 10px;
-    text-align: center;
+  &__welcome-text {
+    font-size: 1.1rem;
+    color: #B0B0B0;
+    margin-bottom: 0.25rem;
+  }
 
-    @include i.respond-to(tablet) {
-      flex-direction: column;
-      justify-content: center;
-    }
+  &__username {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+  }
 
-    &-item {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: i.$clr-white;
+  &__member-date {
+    font-size: 0.95rem;
+    color: #808080;
+  }
+
+  &__membership-section {
+    margin: 2rem 0;
+  }
+}
+
+.dashboard-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.dashboard-action-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .action-icon {
+    color: #2196F3;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 1px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  @media (max-width: 640px) {
+    gap: 0.5rem;
+  }
+}
+
+.dashboard-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  color: #B0B0B0;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+
+  .tab-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px 12px 0 0;
+  }
+
+  &.active {
+    color: #2196F3;
+    border-bottom-color: #2196F3;
+
+    .tab-icon {
+      color: #2196F3;
     }
   }
 
-  &__membership {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
-    padding: 1.5rem 1rem;
-    border-radius: 10px;
-    background: linear-gradient(285deg, #36F 19.9%, #1F3D99 100%);
+  @media (max-width: 640px) {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+  }
+}
 
-    span {
-      font-weight: 600;
-    }
+.dashboard-content {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  padding: 2rem;
+  min-height: 400px;
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
+}
+
+// Klasy pomocnicze
+.header {
+  &--primary {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &--secondary {
+    color: #ffffff;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+.paragraph {
+  &--gray {
+    color: #808080;
+    font-size: 0.95rem;
   }
 }

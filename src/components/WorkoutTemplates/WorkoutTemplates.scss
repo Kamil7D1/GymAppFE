@@ -1,87 +1,191 @@
 .workout-templates {
-  padding: 2rem;
+  padding: 2.5rem;
+  background: #121212;
+  min-height: 100vh;
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
 
   .templates-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 
     h2 {
-      color: #333;
+      color: #FFFFFF;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .create-template-button {
+      padding: 0.875rem 1.75rem;
       background: #2196F3;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 4px;
-      cursor: pointer;
+      color: #FFFFFF;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.3px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
       &:hover {
         background: #1976D2;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
       }
     }
   }
 
+  .loading {
+    color: #B0B0B0;
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+  }
+
   .templates-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2.5rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
   }
 
   .template-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
 
     h3 {
+      color: #FFFFFF;
+      font-size: 1.4rem;
+      font-weight: 600;
       margin-bottom: 1rem;
-      color: #333;
     }
 
     .template-description {
-      color: #666;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
+      color: #B0B0B0;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
 
     .exercises-count {
-      color: #666;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      color: #B0B0B0;
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: "•";
+        margin-right: 0.5rem;
+        color: #2196F3;
+      }
     }
 
     .template-actions {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
 
       button {
         flex: 1;
-        padding: 0.5rem;
-        border-radius: 4px;
-        cursor: pointer;
-        border: none;
+        padding: 0.875rem;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
         &.edit-button {
-          background: #f8f9fa;
-          border: 1px solid #ddd;
+          background: rgba(255, 255, 255, 0.1);
+          color: #FFFFFF;
+          border: 1px solid rgba(255, 255, 255, 0.12);
 
           &:hover {
-            background: #e9ecef;
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
           }
         }
 
         &.use-button {
           background: #4CAF50;
-          color: white;
+          color: #FFFFFF;
+          border: none;
 
           &:hover {
             background: #388E3C;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
           }
         }
+
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .error-message {
+    color: #F44336;
+    background: rgba(244, 67, 54, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    text-align: center;
+    margin: 1rem 0;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: #B0B0B0;
+
+    h3 {
+      font-size: 1.25rem;
+      color: #FFFFFF;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .create-first-template {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.875rem 1.75rem;
+      background: #2196F3;
+      color: #FFFFFF;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+      &:hover {
+        background: #1976D2;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
       }
     }
   }

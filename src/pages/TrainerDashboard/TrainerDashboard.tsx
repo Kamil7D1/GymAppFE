@@ -1,10 +1,10 @@
 import "./TrainerDashboard.scss";
 import { Calendar } from "../../components/Calendar/Calendar.tsx";
 import { AddSessionModal } from "../../components/AddSessionModal/AddSessionModal.tsx";
-import { useState } from "react";
 import { SessionsList } from "../../components/SessionsList/SessionsList.tsx";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {MainLayout} from "../../MainLayout/MainLayout.tsx";
+import {useState} from "react";
 
 export const TrainerDashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -47,6 +47,11 @@ export const TrainerDashboard = () => {
                         onClick={() => setShowSessionsList(!showSessionsList)}
                     >
                         {showSessionsList ? 'Hide Sessions' : 'View Sessions'}
+                    </button>
+                    <button className="trainer-dashboard__add-session">
+                        <Link to="/trainer/workout-plans" className="dashboard-action-button">
+                            Client Workout Plans
+                        </Link>
                     </button>
                     <button
                         className="trainer-dashboard__logout"

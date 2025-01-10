@@ -1,12 +1,36 @@
 import "./Dashboard.scss";
 import React from "react";
-import {MainLayout} from "../../MainLayout/MainLayout.tsx";
-import {Calendar} from "../../components/Calendar/Calendar.tsx";
-import {TrainersList} from "../../components/TrainersList/TrainersList.tsx";
-import {MembershipPurchase} from "../../components/MembershipPurchase/MembershipPurchase.tsx";
-import {Link} from "react-router-dom";
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { MainLayout } from "../../MainLayout/MainLayout.tsx";
+import { MembershipPurchase } from "../../components/MembershipPurchase/MembershipPurchase.tsx";
+import { Link, Outlet, NavLink } from "react-router-dom";
+import {Activity, Dumbbell, Calendar as CalendarIcon, Users, BookOpen, User} from 'lucide-react';
+
+interface User {
+    id: number;
+    firstName: string;
+    lastName: string;
+    role: string;
+    memberSince: string;
+    age?: number;
+    weight?: number;
+    height?: number;
+}
 
 export const Dashboard: React.FC = () => {
+    const { data: user } = useQuery({
+        queryKey: ['user'],
+        queryFn: async () => {
+            const response = await axios.get<User>('/api/users/me', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            return response.data;
+        }
+    });
+
     return (
         <MainLayout>
             <div className="dashboard-page">
@@ -15,61 +39,67 @@ export const Dashboard: React.FC = () => {
                         <img className="dashboard-page__avatar" src="/avatar.png" alt="Profile"/>
                         <div className="dashboard-page__info">
                             <div className="dashboard-page__welcome-text header--primary">Welcome,</div>
-                            <div className="dashboard-page__username header--secondary">Kamil Czudaj</div>
-                            <div className="dashboard-page__member-date paragraph--gray">Member since 03.12.204</div>
+                            <div className="dashboard-page__username header--secondary">
+                                {user ? `${user.firstName} ${user.lastName}` : 'Loading...'}
+                            </div>
+                            <div className="dashboard-page__member-date paragraph--gray">
+                                Member since {user?.memberSince}
+                            </div>
                         </div>
                     </div>
 
-                    <div className="dashboard-page__stats">
-                        <div className="dashboard-page__stats-item">27 years</div>
-                        <div className="dashboard-page__stats-item">76 kg</div>
-                        <div className="dashboard-page__stats-item">180 cm</div>
-                    </div>
-
                     <div className="dashboard-actions">
-                        <Link to="/workout-plans" className="dashboard-action-button">
+                        <Link to="/my-plans" className="dashboard-action-button">
+                            <Dumbbell className="action-icon"/>
                             My Workout Plans
                         </Link>
-                        {userRole === 'TRAINER' && (
-                            <Link to="/trainer/workout-plans" className="dashboard-action-button">
-                                Client Workout Plans
-                            </Link>
-                        )}
+                        <Link to="/progress" className="dashboard-action-button">
+                            <Activity className="action-icon"/>
+                            Track Progress
+                        </Link>
+                        <Link to="/profile" className="dashboard-action-button">
+                            <User className="action-icon"/>
+                            My Profile
+                        </Link>
                     </div>
 
                     <div className="dashboard-page__membership-section">
                         <MembershipPurchase/>
                     </div>
 
-                    <div className="dashboard-page__membership">
-                        <h3 className="dashboard-page__membership-title header--tertiary">Your Membership</h3>
-                        <div className="dashboard-page__membership-duration">
-                            <p className="paragraph--black">
-                                Duration:
-                                <span>
-                                    {" "}6 Months
-                                </span>
-                            </p>
-                        </div>
-                        <div className="dashboard-page__membership-status">
-                            <p className="paragraph--black">
-                                Active - Valid until:
-                                <span>
-                                    {" "}31.12.2024
-                                </span>
-                            </p>
-                        </div>
-                        <div className="dashboard-page__membership-id">
-                            <p className="paragraph--black">
-                                <span>
-                                    #D24HKL34
-                                </span>
-                            </p>
-                        </div>
+                    <div className="dashboard-tabs">
+                        <NavLink
+                            to="/dashboard/calendar"
+                            className={({isActive}) =>
+                                `dashboard-tab ${isActive ? 'active' : ''}`
+                            }
+                        >
+                            <CalendarIcon className="tab-icon"/>
+                            Calendar
+                        </NavLink>
+                        <NavLink
+                            to="/dashboard/my-bookings"
+                            className={({isActive}) =>
+                                `dashboard-tab ${isActive ? 'active' : ''}`
+                            }
+                        >
+                            <BookOpen className="tab-icon"/>
+                            My Bookings
+                        </NavLink>
+                        <NavLink
+                            to="/dashboard/trainers"
+                            className={({isActive}) =>
+                                `dashboard-tab ${isActive ? 'active' : ''}`
+                            }
+                        >
+                            <Users className="tab-icon"/>
+                            Trainers
+                        </NavLink>
+                    </div>
+                    <div className="dashboard-content">
+                        <Outlet/>
                     </div>
                 </div>
-                <Calendar/>
-                <TrainersList/>
             </div>
         </MainLayout>
     );

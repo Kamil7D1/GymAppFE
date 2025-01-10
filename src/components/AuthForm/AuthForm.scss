@@ -1,36 +1,81 @@
-@use "../../assets/styles/index.scss" as i;
+// AuthForm.scss
+@use '../../assets/styles/index' as *;
 
 .auth-form {
-  flex: 1;
-  max-width: 30rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: i.$clr-black-h;
-  opacity: .96;
-  row-gap: 1rem;
-  border-radius: 10px;
-  padding: 3rem 1.5rem;
+  width: 100%;
+  max-width: 400px;
+  padding: 2.5rem;
+  background: rgba($clr-black, 0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba($clr-white, 0.1);
 
-  &__error {
-    margin: 1rem 0 0 1rem;
-    color: i.$clr-red;
+  &__title {
+    text-align: center;
+    margin-bottom: 2rem;
   }
 
   &__input-container {
-    width: 100%;
+    margin-bottom: 1.5rem;
+  }
+
+  &__error {
+    color: $clr-red;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
   }
 
   &__forgot-password {
-    align-self: start;
-  }
+    text-align: right;
+    margin-bottom: 1.5rem;
 
-  span {
-    color: i.$clr-blue;
+    &-link {
+      color: $clr-blue;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__submit-button {
     width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 0.875rem 1.5rem;
+    background: $clr-blue;
+    color: $clr-white;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: darken($clr-blue, 10%);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__signup-text {
+    text-align: center;
+    color: $clr-gray;
+
+    &-link {
+      color: $clr-blue;
+      margin-left: 0.5rem;
+      cursor: pointer;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }

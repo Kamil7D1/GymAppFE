@@ -1,24 +1,51 @@
-@use "../../assets/styles/index" as i;
+// Button.scss
+@use '../../assets/styles/index' as *;
 
 .button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: i.$clr-blue;
-  border-radius: 4px;
+  padding: 0.875rem 1.5rem;
+  border-radius: 8px;
   font-weight: 500;
-  padding: .8rem 1rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
 
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
+  // Primary variant
+  &--primary {
+    background: $clr-blue;
+    color: $clr-white;
+
+    //&:hover:not(:disabled) {
+    //  background: darken($clr-blue, 10%);
+    //  transform: translateY(-1px);
+    //}
   }
 
-  @include i.respond-to(desktop) {
-    padding: .8rem 2.5rem;
+  // Secondary variant
+  &--secondary {
+    background: transparent;
+    border: 2px solid $clr-blue;
+    color: $clr-blue;
+
+    &:hover:not(:disabled) {
+      background: rgba($clr-blue, 0.1);
+    }
   }
 
-  @include i.respond-to(large-desktop) {
-    padding: .8rem 3.5rem;
+  // Danger variant
+  &--danger {
+    background: $clr-red;
+    color: $clr-white;
+
+    //&:hover:not(:disabled) {
+    //  background: darken($clr-red, 10%);
+    //}
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }

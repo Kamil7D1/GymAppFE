@@ -1,7 +1,9 @@
 import "./Header.scss";
 import React, { useState, useEffect, useRef } from 'react';
-import {Button} from "../Button/Button.tsx";
-import {Link, useNavigate} from "react-router-dom";
+import { Button } from "../Button/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { NotificationsPanel } from '../Notifications/NotificationsPanel';
+import { useSocket } from '../../context/SocketContext';
 
 interface NavItem {
     label: string;
@@ -12,17 +14,23 @@ export const Header: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const navigate = useNavigate();
+    const { socket } = useSocket();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
+        const storedUserId = localStorage.getItem('userId');
         setIsLoggedIn(!!token);
+        setUserId(storedUserId);
     }, []);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId');
         setIsLoggedIn(false);
+        setUserId(null);
         navigate('/');
     };
 
@@ -47,6 +55,24 @@ export const Header: React.FC = () => {
         };
     }, [isMenuOpen]);
 
+    useEffect(() => {
+        if (socket && userId) {
+            console.log('Attempting to join room from Header for user:', userId);
+            socket.emit('join', userId);
+
+            // Debug info
+            socket.on('roomJoined', (roomId: string) => {
+                console.log('Successfully joined room:', roomId);
+            });
+
+            return () => {
+                console.log('Cleanup: leaving room for user:', userId);
+                socket?.off('roomJoined');
+                socket?.emit('leave', userId);
+            };
+        }
+    }, [socket, userId]);
+
     const navItems: NavItem[] = [
         { label: 'Benefits', href: '#benefits' },
         { label: 'Membership', href: '#membership' },
@@ -60,6 +86,11 @@ export const Header: React.FC = () => {
 
     return (
         <header className="header">
+            {isLoggedIn && userId && (
+                <div className="header__nav-notifications">
+                    <NotificationsPanel/>
+                </div>
+            )}
             <div className="header__container">
                 <div className="header__logo">
                     <img
@@ -69,7 +100,7 @@ export const Header: React.FC = () => {
                     />
                 </div>
                 <nav className="header__nav">
-                    {navItems.map(({ label, href }) => (
+                    {navItems.map(({label, href}) => (
                         <a
                             key={label}
                             className="header__nav-item"
@@ -78,6 +109,11 @@ export const Header: React.FC = () => {
                             {label}
                         </a>
                     ))}
+                    {isLoggedIn && userId && (
+                        <div className="header__nav-notifications">
+                            <NotificationsPanel/>
+                        </div>
+                    )}
                     {isLoggedIn ? (
                         <Button
                             className="header__mobile-menu__button"
@@ -128,7 +164,7 @@ export const Header: React.FC = () => {
                 className={`header__mobile-menu ${isMenuOpen ? 'header__mobile-menu--open' : ''}`}
             >
                 <div className="header__mobile-menu-container">
-                    {navItems.map(({ label, href }) => (
+                    {navItems.map(({label, href}) => (
                         <a
                             key={label}
                             className="header__mobile-menu-item"
@@ -139,6 +175,11 @@ export const Header: React.FC = () => {
                             </p>
                         </a>
                     ))}
+                    {isLoggedIn && userId && (
+                        <div className="header__mobile-menu-notifications">
+                            <NotificationsPanel />
+                        </div>
+                    )}
                     {isLoggedIn ? (
                         <Button
                             className="header__mobile-menu__button"

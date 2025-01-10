@@ -1,21 +1,43 @@
-@use "../../assets/styles/index" as i;
+@use '../../assets/styles/index' as *;
 
 .about {
-  margin-top: 2rem;
-  padding: 0 1rem;
+  padding: 6rem 2rem;
+  background: linear-gradient(to right, $clr-black, darken($clr-black, 5%));
+  position: relative;
+  overflow: hidden;
 
-  &__content {
-    max-width: 1500px;
-    @include i.flex-center;
-    flex-direction: column;
-    text-align: center;
-    margin: 0 auto;
-
-    @include i.respond-to(tablet) {
-    }
+  @include respond-to(mobile) {
+    padding: 4rem 1rem;
   }
 
-  h3 {
-    margin: 1.5rem 0;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/about-pattern.png') center/cover; // Optional pattern overlay
+    opacity: 0.05;
+  }
+
+  &__content {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      line-height: 1.6;
+    }
   }
 }

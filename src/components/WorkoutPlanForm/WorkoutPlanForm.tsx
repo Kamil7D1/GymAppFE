@@ -36,21 +36,19 @@ export const WorkoutPlanForm: React.FC<WorkoutPlanFormProps> = ({
     const createMutation = useMutation({
         mutationFn: async (data: any) => {
             const endpoint = clientId
-                ? '/api/workout-plans/client'
+                ? `/api/trainer-workouts/clients/${clientId}/plans`  // Updated endpoint
                 : '/api/workout-plans';
 
-            const response = await axios.post(endpoint,
-                clientId ? { ...data, clientId } : data,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
+            return axios.post(endpoint, data, {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
                 }
-            );
-            return response.data;
+            });
         },
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['workoutPlans'] });
+            queryClient.invalidateQueries({
+                queryKey: ['clientWorkoutPlans', clientId]
+            });
             onClose();
         }
     });
@@ -76,7 +74,10 @@ export const WorkoutPlanForm: React.FC<WorkoutPlanFormProps> = ({
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        const data = { name, description, exercises };
+        const data = { name, description, exercises, clientId };
+        // console.log('Request data:', {
+        //     name, description, exercises, clientId
+        // });
 
         if (initialData?.id) {
             updateMutation.mutate(data);
